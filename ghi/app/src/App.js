@@ -9,6 +9,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/service"/>
+          <Route path="/sales" />
+          <Route path="/inventory" />
         </Routes>
       </div>
     </BrowserRouter>
