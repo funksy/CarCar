@@ -43,10 +43,15 @@ class AppointmentEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
-        appointments = Appointment.objects.all()
-        return JsonResponse(
-            appointments, encoder=AppointmentEncoder, safe=False
-        )
+        try:
+            appointments = Appointment.objects.all()
+            return JsonResponse(
+                appointments, encoder=AppointmentEncoder, safe=False
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to get appointments!"}, status=400
+            )
     if request.method == "POST":
         # Test Data
         # {
@@ -58,19 +63,27 @@ def api_list_appointments(request):
         #     "technician": 1
         # }
         content = json.loads(request.body)
+        if "technician" in content:
+            try:
+                technician_id = content["technician"]
+                content["technician"] = Technician.objects.get(
+                    id=technician_id
+                )
+            except Technician.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Technician dose not exist!"}, status=404
+                )
         try:
-            technician_id = content["technician"]
-            content["technician"] = Technician.objects.get(id=technician_id)
+            appt = Appointment.objects.create(**content)
+            appointment = Appointment.objects.get(id=appt.id)
 
-        except Technician.DoesNotExist:
-            return JsonResponse({"message": "Technician dose not exist!"})
-
-        appt = Appointment.objects.create(**content)
-        appointment = Appointment.objects.get(id=appt.id)
-
-        return JsonResponse(
-            appointment, encoder=AppointmentEncoder, safe=False
-        )
+            return JsonResponse(
+                appointment, encoder=AppointmentEncoder, safe=False
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to create an appointment!"}, status=400
+            )
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])
@@ -82,37 +95,68 @@ def api_show_appointment(request, id):
                 appointment, encoder=AppointmentEncoder, safe=False
             )
         except Appointment.DoesNotExist:
-            return JsonResponse({"message": "Appointment dose not exist!"})
+            return JsonResponse(
+                {"message": "Appointment dose not exist!"}, status=404
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to get appointment!"}, status=400
+            )
     if request.method == "PUT":
+        try:
+            appointment = Appointment.objects.get(id=id)
+        except Appointment.DoesNotExist:
+            return JsonResponse(
+                {"message": "Appointment dose not exist!"}, status=404
+            )
+
         content = json.loads(request.body)
-        print(content)
-        print(id)
+
         if "technician" in content:
             try:
                 technician_id = content["technician"]
                 content["technician"] = Technician.objects.get(
                     id=technician_id
                 )
-
             except Technician.DoesNotExist:
-                return JsonResponse({"message": "Technician dose not exist!"})
+                return JsonResponse(
+                    {"message": "Technician dose not exist!"}, status=400
+                )
+        try:
+            for key, values in content.items():
+                setattr(appointment, key, values)
+            appointment.save()
+            appointment = Appointment.objects.get(id=id)
+            return JsonResponse(
+                appointment, encoder=AppointmentEncoder, safe=False
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to update the appointment!"}, status=400
+            )
 
-        Appointment.objects.filter(id=id).update(**content)
-        appointment = Appointment.objects.get(id=id)
-        return JsonResponse(
-            appointment, encoder=AppointmentEncoder, safe=False
-        )
     if request.method == "DELETE":
         count, _ = Appointment.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        if count == 0:
+            return JsonResponse(
+                {"message": "Appointment dose not exist!"}, status=404
+            )
+        else:
+            return JsonResponse({"deleted": True})
 
 
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":
-        technicians = Technician.objects.all()
-        return JsonResponse(technicians, encoder=TechnicianEncoder, safe=False)
-
+        try:
+            technicians = Technician.objects.all()
+            return JsonResponse(
+                technicians, encoder=TechnicianEncoder, safe=False
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to get technicians!"}, status=400
+            )
     if request.method == "POST":
         # Test Data
         # {
@@ -120,11 +164,16 @@ def api_list_technicians(request):
         #   "last_name": "Lukich",
         #   "employee_id": "1001",
         # }
-        content = json.loads(request.body)
-
-        technician = Technician.objects.create(**content)
-
-        return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+        try:
+            content = json.loads(request.body)
+            technician = Technician.objects.create(**content)
+            return JsonResponse(
+                technician, encoder=TechnicianEncoder, safe=False
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to add technician!"}, status=400
+            )
 
 
 @require_http_methods(["GET", "PUT", "DELETE"])
@@ -136,12 +185,37 @@ def api_show_technician(request, id):
                 technician, encoder=TechnicianEncoder, safe=False
             )
         except Technician.DoesNotExist:
-            return JsonResponse({"message": "Technician dose not exist!"})
+            return JsonResponse(
+                {"message": "Technician dose not exist!"}, status=404
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to get technician!"}, status=400
+            )
     if request.method == "PUT":
         content = json.loads(request.body)
-        Technician.objects.filter(id=id).update(**content)
-        technician = Technician.objects.get(id=id)
-        return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+        try:
+            technician = Technician.objects.get(id=id)
+            for key, values in content.items():
+                setattr(technician, key, values)
+            technician.save()
+            technician = Technician.objects.get(id=id)
+            return JsonResponse(
+                technician, encoder=TechnicianEncoder, safe=False
+            )
+        except Technician.DoesNotExist:
+            return JsonResponse(
+                {"message": "Technician dose not exist!"}, status=404
+            )
+        except:
+            return JsonResponse(
+                {"message": "Failed to update technician!"}, status=400
+            )
     if request.method == "DELETE":
         count, _ = Technician.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        if count == 0:
+            return JsonResponse(
+                {"message": "Technician dose not exist!"}, status=404
+            )
+        else:
+            return JsonResponse({"deleted": True})

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import { useNavigate } from "react-router-dom";
 
 function AppointmentForm() {
   const DEFAULT_FORM_DATA = {
@@ -24,6 +25,7 @@ function AppointmentForm() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [dateTime, setDateTime] = useState(DEFAULT_DATETIME);
   const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const navigate = useNavigate();
 
   const initialData = () => {
     setFormData(DEFAULT_FORM_DATA);
@@ -58,6 +60,11 @@ function AppointmentForm() {
     fetchData();
   }, []);
 
+  const handleNavigate = (param1) => {
+    setAlertConfig(param1);
+    navigate("/appointments");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,9 +83,9 @@ function AppointmentForm() {
       setAlertConfig({
         isShow: true,
         style: "success",
-        message: "Appointment has been created successfully!",
+        message: "Appointment has been created successfully! Redirecting now!",
         autoReset: 3000,
-        resetFunc: setAlertConfig,
+        resetFunc: handleNavigate,
         defaultConfig: DEFAULT_ALERT_CONFIG,
       });
     } else {
@@ -128,6 +135,7 @@ function AppointmentForm() {
               <input
                 onChange={handleDateOrTimeChanged}
                 value={dateTime.date}
+                min={new Date().toISOString().split("T")[0]}
                 placeholder="Date"
                 required
                 type="date"
