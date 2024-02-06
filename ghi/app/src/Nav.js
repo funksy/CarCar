@@ -25,95 +25,151 @@ function Nav() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/manufacturers">
-                Manufacturers
-              </NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Manufacturer
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/manufacturers">
+                    Manufacturer List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/manufacturers/new">
+                    New Manufacturer
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/manufacturers/new">
-                New Manufacturer
-              </NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Model
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/models">
+                    Model List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/models/new">
+                    New Model
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/models">
-                Models
-              </NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Automobile
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/automobiles">
+                    Automobile List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/inventory/automobiles/new">
+                    New Automobile
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/models/new">
-                New Model
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/automobiles">
-                Automobiles
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/inventory/automobiles/new">
-                New Automobile
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Salespeople
-              </NavLink>
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/salespeople">
+                    Salespeople List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/salespeople/new">
+                    New Salesperson
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/salespeople/history">
+                    Salespeople History
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople/new">
-                Add a Salesperson
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/salespeople/history">
-                Salespeople History
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/customers">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Customers
-              </NavLink>
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/customers">
+                    Customer List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/customers/new">
+                    New Customer
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/customers/new">
-                Add a Customer
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/sales">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Sales
-              </NavLink>
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/sales">
+                    Sales List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/sales/new">
+                    New Sales
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/new">
-                Add a Sale
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/technicians">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Technicians
-              </NavLink>
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/technicians">
+                    Technician List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/technicians/new">
+                    New Technician
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/technicians/new">
-                Add a Technician
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/appointments">
-                Service Appointments
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/appointments/new">
-                Create a Service Appointment
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/appointments/history">
-                Service History
-              </NavLink>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Appointments
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/appointments">
+                    Appointment List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/appointments/new">
+                    New Appointment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/appointments/history">
+                    Appointment History
+                  </NavLink>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
