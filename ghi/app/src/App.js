@@ -20,13 +20,13 @@ function App() {
 
           <Route path="appointments">
             <Route path="" element={<AppointmentsList />} />
-            <Route path="create" element={<AppointmentForm />} />
+            <Route path="new" element={<AppointmentForm />} />
             <Route path="history" element={<AppointmentsHistory />} />
           </Route>
 
           <Route path="technicians">
             <Route path="" element={<TechniciansList />} />
-            <Route path="create" element={<TechnicianForm />} />
+            <Route path="new" element={<TechnicianForm />} />
           </Route>
 
           <Route path="sales">
