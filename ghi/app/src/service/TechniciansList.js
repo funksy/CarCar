@@ -21,7 +21,7 @@ function TechniciansList() {
     <>
       <h1 className="mt-4 mb-4">Technicians</h1>
 
-      <table className="table table-striped text-center">
+      <table className="table table-striped text-center text-capitalize">
         <thead>
           <tr>
             <th>Employee ID</th>

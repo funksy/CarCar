@@ -34,7 +34,7 @@ function AppointmentsHistory() {
         <td>{appointment.time}</td>
         <td>{appointment.technician.full_name}</td>
         <td>{appointment.reason}</td>
-        <td className="text-capitalize">{appointment.status}</td>
+        <td>{appointment.status}</td>
       </tr>
     );
   };
@@ -65,7 +65,7 @@ function AppointmentsHistory() {
         )}
       </div>
 
-      <table className="table table-striped text-center">
+      <table className="table table-striped text-center text-capitalize">
         <thead>
           <tr>
             <th>VIN</th>

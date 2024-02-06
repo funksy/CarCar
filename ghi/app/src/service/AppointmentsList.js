@@ -62,7 +62,7 @@ function AppointmentsList() {
   return (
     <>
       <h1 className="mt-4 mb-4">Service Appointments</h1>
-      <table className="table table-striped text-center">
+      <table className="table table-striped text-center text-capitalize">
         <thead>
           <tr className={alertConfig.isShow ? "" : "d-none"}>
             <th colSpan="8">
