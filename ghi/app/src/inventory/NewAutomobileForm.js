@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewAutoMobileForm() {
     const initialForm = {
@@ -9,6 +10,7 @@ function NewAutoMobileForm() {
     }
     const [formData, setFormData] = useState(initialForm)
     const [models, setmodels] = useState([])
+    const navigate = useNavigate()
 
 
     const fetchModels = async () => {
@@ -53,6 +55,7 @@ function NewAutoMobileForm() {
             const newAutomobile = await response.json()
             setFormData(initialForm)
         }
+        navigate('/inventory/automobiles')
     }
 
     return (

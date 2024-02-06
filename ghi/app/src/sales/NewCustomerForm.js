@@ -9,6 +9,7 @@ function NewCustomerForm() {
         phone_number: ''
     }
     const [formData, setFormData] = useState(initialForm)
+    const navigate = useNavigate()
 
 
     const handleFormChange = (e) => {
@@ -38,6 +39,7 @@ function NewCustomerForm() {
             const newCustomer = await response.json()
             setFormData(initialForm)
         }
+        navigate('/customers')
     }
 
     return (

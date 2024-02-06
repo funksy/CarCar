@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewModelForm() {
     const initialForm = {
@@ -8,6 +9,7 @@ function NewModelForm() {
     }
     const [formData, setFormData] = useState(initialForm)
     const [manufacturers, setManufacturers] = useState([])
+    const navigate = useNavigate()
 
 
     const fetchManufacturers = async () => {
@@ -52,6 +54,7 @@ function NewModelForm() {
             const newManufacturer = await response.json()
             setFormData(initialForm)
         }
+        navigate('/inventory/models')
     }
 
     return (
