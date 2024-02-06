@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
@@ -27,6 +27,17 @@ class AppointmentEncoder(ModelEncoder):
     ]
     encoders = {"technician": TechnicianEncoder()}
 
+    def get_extra_data(self, o):
+        return {
+            "date": o.date_time.strftime("%-m/%-d/%Y"),
+            "time": o.date_time.strftime("%I:%M %p"),
+            "is_vip": (
+                "Yes"
+                if AutomobileVO.objects.filter(vin=o.vin).count()
+                else "No"
+            ),
+        }
+
 
 # Create your views here.
 @require_http_methods(["GET", "POST"])
@@ -54,7 +65,8 @@ def api_list_appointments(request):
         except Technician.DoesNotExist:
             return JsonResponse({"message": "Technician dose not exist!"})
 
-        appointment = Appointment.objects.create(**content)
+        appt = Appointment.objects.create(**content)
+        appointment = Appointment.objects.get(id=appt.id)
 
         return JsonResponse(
             appointment, encoder=AppointmentEncoder, safe=False
@@ -73,14 +85,19 @@ def api_show_appointment(request, id):
             return JsonResponse({"message": "Appointment dose not exist!"})
     if request.method == "PUT":
         content = json.loads(request.body)
-        try:
-            technician_id = content["technician"]
-            content["technician"] = Technician.objects.get(id=technician_id)
+        print(content)
+        print(id)
+        if "technician" in content:
+            try:
+                technician_id = content["technician"]
+                content["technician"] = Technician.objects.get(
+                    id=technician_id
+                )
 
-        except Technician.DoesNotExist:
-            return JsonResponse({"message": "Technician dose not exist!"})
+            except Technician.DoesNotExist:
+                return JsonResponse({"message": "Technician dose not exist!"})
 
-        Appointment.objects.update(**content)
+        Appointment.objects.filter(id=id).update(**content)
         appointment = Appointment.objects.get(id=id)
         return JsonResponse(
             appointment, encoder=AppointmentEncoder, safe=False
@@ -122,7 +139,7 @@ def api_show_technician(request, id):
             return JsonResponse({"message": "Technician dose not exist!"})
     if request.method == "PUT":
         content = json.loads(request.body)
-        Technician.objects.update(**content)
+        Technician.objects.filter(id=id).update(**content)
         technician = Technician.objects.get(id=id)
         return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
     if request.method == "DELETE":
