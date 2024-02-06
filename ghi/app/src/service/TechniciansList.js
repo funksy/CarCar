@@ -9,7 +9,6 @@ function TechniciansList() {
     if (response.ok) {
       const data = await response.json();
       setTechnicians(data);
-      console.log(data);
     }
   };
 
