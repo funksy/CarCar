@@ -34,6 +34,7 @@ function AppointmentsHistory() {
         <td>{appointment.time}</td>
         <td>{appointment.technician.full_name}</td>
         <td>{appointment.reason}</td>
+        <td>{appointment.status}</td>
       </tr>
     );
   };
@@ -74,6 +75,7 @@ function AppointmentsHistory() {
             <th>Time</th>
             <th>Technician</th>
             <th>Reason</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
