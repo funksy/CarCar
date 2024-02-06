@@ -75,6 +75,8 @@ def api_show_salespeople(request):
         )
     else:
         content = json.loads(request.body)
+        employee_id = f"{content['first_name'][0]}{content['last_name']}"
+        content['employee_id'] = employee_id
         new_salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
             new_salesperson,
@@ -135,7 +137,7 @@ def api_show_sales(request):
 
         try:
             new_sale['automobile'] = AutomobileVO.objects.get(vin=content['vin'])
-            new_sale['salesperson'] = Salesperson.objects.get(employee_id=content['employee_id'])
+            new_sale['salesperson'] = Salesperson.objects.get(id=content['salesperson_id'])
             new_sale['customer'] = Customer.objects.get(id=content['customer_id'])
             new_sale['price'] = content['price']
 

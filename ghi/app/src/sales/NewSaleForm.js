@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function NewSaleForm() {
     const initialForm = {
         vin: '',
-        employee_id: '',
+        salesperson_id: '',
         customer_id: '',
         price: ''
     }
@@ -111,8 +111,8 @@ function NewSaleForm() {
                             </select>
                         </div>
                         <div className="form-floating mb-3">
-                            <select onChange={handleFormChange} required id="employee_id"
-                            className="form-select" name="employee_id" value={formData.employee_id}>
+                            <select onChange={handleFormChange} required id="salesperson_id"
+                            className="form-select" name="salesperson_id" value={formData.salesperson_id}>
                                 <option value="">Choose a Salesperson</option>
                                 {salespeople.map(salesperson => {
                                     return (
