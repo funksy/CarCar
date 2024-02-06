@@ -18,9 +18,24 @@ function NewSaleForm() {
     const fetchData = async () => {
         const vinsUrl = 'http://localhost:8090/api/auto_vos/'
         const vinsResponse = await fetch(vinsUrl)
-        if (vinsResponse.ok) {
+
+        const salesUrl = '	http://localhost:8090/api/sales/'
+        const salesResponse = await fetch(salesUrl)
+
+        if (vinsResponse.ok && salesResponse.ok) {
             const vinsData = await vinsResponse.json()
-            setVins(vinsData)
+            const sales = await salesResponse.json()
+            const soldVins = []
+            for (const sale of sales) {
+                soldVins.push(sale.automobile.vin)
+            }
+            const unsoldVins = []
+            for (const vin of vinsData) {
+                if (!soldVins.includes(vin.vin)) {
+                    unsoldVins.push(vin)
+                }
+            }
+            setVins(unsoldVins)
         }
 
         const salespeopleUrl = 'http://localhost:8090/api/salespeople/'

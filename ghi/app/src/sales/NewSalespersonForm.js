@@ -38,6 +38,7 @@ function NewSalesperson() {
             const newSalesperson = await response.json()
             setFormData(initialForm)
         }
+        navigate('/salespeople')
     }
 
 

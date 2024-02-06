@@ -4,6 +4,10 @@ import Nav from './Nav';
 import NewSaleForm from './sales/NewSaleForm'
 import NewSalespersonForm from './sales/NewSalespersonForm'
 import NewCustomerForm from './sales/NewCustomerForm'
+import SalespeopleList from './sales/SalespeopleList'
+import SalespeopleHistoryList from './sales/SalespeopleHistoryList'
+import CustomerList from './sales/CustomerList'
+import SalesList from './sales/SalesList'
 
 function App() {
   return (
@@ -14,12 +18,16 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="service"/>
           <Route path="sales">
+            <Route path="" element={<SalesList/>}/>
             <Route path="new" element={<NewSaleForm/>}/>
           </Route>
           <Route path="salespeople">
+            <Route path="" element={<SalespeopleList/>}/>
             <Route path="new" element={<NewSalespersonForm/>}/>
+            <Route path="history" element={<SalespeopleHistoryList/>}/>
           </Route>
           <Route path="customers">
+            <Route path="" element={<CustomerList/>}/>
             <Route path="new" element={<NewCustomerForm/>}/>
           </Route>
           <Route path="inventory" />
