@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/">
           CarCar
-        </NavLink>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,9 +21,9 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/">
+              <Link className="nav-link" aria-current="page" to="/">
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
@@ -31,14 +31,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/manufacturers">
+                  <Link className="dropdown-item" to="/inventory/manufacturers">
                     Manufacturer List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/manufacturers/new">
+                  <Link className="dropdown-item" to="/inventory/manufacturers/new">
                     New Manufacturer
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -48,14 +48,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/models">
+                  <Link className="dropdown-item" to="/inventory/models">
                     Model List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/models/new">
+                  <Link className="dropdown-item" to="/inventory/models/new">
                     New Model
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -65,14 +65,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/automobiles">
+                  <Link className="dropdown-item" to="/inventory/automobiles">
                     Automobile List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/inventory/automobiles/new">
+                  <Link className="dropdown-item" to="/inventory/automobiles/new">
                     New Automobile
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -82,19 +82,19 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/salespeople">
+                  <Link className="dropdown-item" to="/salespeople">
                     Salespeople List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/salespeople/new">
+                  <Link className="dropdown-item" to="/salespeople/new">
                     New Salesperson
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/salespeople/history">
+                  <Link className="dropdown-item" to="/salespeople/history">
                     Salespeople History
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -104,14 +104,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/customers">
+                  <Link className="dropdown-item" to="/customers">
                     Customer List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/customers/new">
+                  <Link className="dropdown-item" to="/customers/new">
                     New Customer
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -121,14 +121,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/sales">
+                  <Link className="dropdown-item" to="/sales">
                     Sales List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/sales/new">
+                  <Link className="dropdown-item" to="/sales/new">
                     New Sales
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -138,14 +138,14 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/technicians">
+                  <Link className="dropdown-item" to="/technicians">
                     Technician List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/technicians/new">
+                  <Link className="dropdown-item" to="/technicians/new">
                     New Technician
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -155,19 +155,19 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <NavLink className="dropdown-item" to="/appointments">
+                  <Link className="dropdown-item" to="/appointments">
                     Appointment List
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/appointments/new">
+                  <Link className="dropdown-item" to="/appointments/new">
                     New Appointment
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink className="dropdown-item" to="/appointments/history">
+                  <Link className="dropdown-item" to="/appointments/history">
                     Appointment History
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>

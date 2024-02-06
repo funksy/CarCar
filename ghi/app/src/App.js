@@ -32,8 +32,8 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="inventory">
             <Route path="manufacturers">
-              <Route path="" element={<ManufacturerList/>}/>
-              <Route path="new" element={<NewManufacturerForm/>}/>
+              <Route exact path="" element={<ManufacturerList/>}/>
+              <Route exact path="new" element={<NewManufacturerForm/>}/>
             </Route>
             <Route path="models">
               <Route path="" element={<ModelList/>}/>
