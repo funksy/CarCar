@@ -99,8 +99,8 @@ Sales and Service microservices have a **poller** to keep track of the records o
 
 ```
 {
-    "id": null,
-    "name": "Chrysler"
+  "id": null,
+  "name": "Chrysler"
 }
 ```
 
@@ -153,7 +153,7 @@ Sales and Service microservices have a **poller** to keep track of the records o
 
 ```
 {
-    "models": [
+  "models": [
     {
       "href": "/api/models/1/",
       "id": 1,
@@ -265,7 +265,7 @@ Sales and Service microservices have a **poller** to keep track of the records o
 			},
 			"sold": false
 		}
-    ]
+  ]
 }
 ```
 
@@ -459,28 +459,28 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 
 **<ins>The return value of listing sales.</ins>** <br />
 
-```TODO
+```
 [
 	{
-        "automobile": {
-            "vin": "1C3CC5FB2AN120175",
-            "sold": false
-        },
-        "salesperson": {
-            "first_name": "first",
-            "last_name": "last",
-            "employee_id": 1001,
-            "id": 1
-        },
-        "customer": {
-            "first_name": "first",
-            "last_name": "last",
-            "address": "addr",
-            "phone_number": "1112223333",
-            "id": 1
-        },
-        "price": 50000,
+    "automobile": {
+        "vin": "1C3CC5FB2AN120175",
+        "sold": false
+    },
+    "salesperson": {
+        "first_name": "first",
+        "last_name": "last",
+        "employee_id": 1001,
         "id": 1
+    },
+    "customer": {
+        "first_name": "first",
+        "last_name": "last",
+        "address": "addr",
+        "phone_number": "1112223333",
+        "id": 1
+    },
+    "price": 50000,
+    "id": 1
     }
 ]
 ```
@@ -605,20 +605,20 @@ On the backend, there are 3 models: AutomobileVO, Technician, and Appointment.
 ```
 [
 	{
-        "id": 3,
-        "date_time": "2024-03-10T15:35:00Z",
-        "reason": "Oil Change",
-        "status": "scheduled",
-        "vin": "1C3CC5FB2AN120174",
-        "customer": "customer name",
-        "technician": {
-            "id": 1,
-            "first_name": "first",
-            "last_name": "last",
-            "employee_id": "10001",
-            "full_name": "first last"
-        }
+    "id": 3,
+    "date_time": "2024-03-10T15:35:00Z",
+    "reason": "Oil Change",
+    "status": "scheduled",
+    "vin": "1C3CC5FB2AN120174",
+    "customer": "customer name",
+    "technician": {
+        "id": 1,
+        "first_name": "first",
+        "last_name": "last",
+        "employee_id": "10001",
+        "full_name": "first last"
     }
+  }
 ]
 ```
 
