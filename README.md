@@ -317,13 +317,12 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 | Creates a salesperson                | POST   | http://localhost:8090/api/salespeople/    |
 | Deletes a single salesperson         | DELETE | http://localhost:8090/api/salespeople/id/ |
 
-**<ins>Creating a salesperson with its fisrt, last name and employee id.</ins>** <br />
+**<ins>Creating a salesperson with its first name and last name.  The employee ID is automatically generated</ins>** <br />
 
 ```
 {
   "first_name": "first",
   "last_name": "last",
-  "employee_id": 1001
 }
 ```
 
@@ -333,7 +332,7 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 {
 	"first_name": "first",
 	"last_name": "last",
-	"employee_id": 1001,
+	"employee_id": "flast",
 	"id": 1
 }
 ```
@@ -345,7 +344,7 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 	{
 		"first_name": "first",
 		"last_name": "last",
-		"employee_id": 1001,
+		"employee_id": "flast",
 		"id": 1
 	}
 ]
@@ -367,7 +366,7 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 | Creates a customer                  | POST   | http://localhost:8090/api/customers/    |
 | Deletes a single customer           | DELETE | http://localhost:8090/api/customers/id/ |
 
-**<ins>Creating a customer with its fisrt, last name, address and phone number.</ins>** <br />
+**<ins>Creating a customer with its first, last name, address and phone number.</ins>** <br />
 
 ```
 {
@@ -515,7 +514,7 @@ On the backend, there are 3 models: AutomobileVO, Technician, and Appointment.
 | Creates a technician                 | POST   | http://localhost:8090/api/technicians/    |
 | Deletes a single technician          | DELETE | http://localhost:8090/api/technicians/id/ |
 
-**<ins>Creating a technician with its fisrt, last name and employee id.</ins>** <br />
+**<ins>Creating a technician with its first, last name and employee id.</ins>** <br />
 
 ```
 {
