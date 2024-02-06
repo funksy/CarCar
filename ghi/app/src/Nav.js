@@ -127,7 +127,7 @@ function Nav() {
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/sales/new">
-                    New Sales
+                    Record a New Sale
                   </Link>
                 </li>
               </ul>

@@ -75,23 +75,35 @@ def api_show_salespeople(request):
         )
     else:
         content = json.loads(request.body)
-        employee_id = f"{content['first_name'][0]}{content['last_name']}"
-        content['employee_id'] = employee_id
-        new_salesperson = Salesperson.objects.create(**content)
-        return JsonResponse(
-            new_salesperson,
-            encoder=SalespersonEncoder,
-            safe=False,
-        )
+        try:
+            employee_id = f"{content['first_name'][0]}{content['last_name']}"
+            content['employee_id'] = employee_id
+            new_salesperson = Salesperson.objects.create(**content)
+            return JsonResponse(
+                new_salesperson,
+                encoder=SalespersonEncoder,
+                safe=False,
+            )
+        except:
+            return JsonResponse(
+                {'message': 'Your submission contains invalid data'},
+                status=400,
+            )
 
 
 @require_http_methods('DELETE')
 def api_delete_salesperson(request, id):
     if request.method == 'DELETE':
         count, _ = Salesperson.objects.filter(id=id).delete()
-        return JsonResponse(
-            {'deleted': count > 0}
-        )
+        if count == 0:
+            return JsonResponse(
+                {'deleted': count > 0},
+                status=400,
+            )
+        else:
+            return JsonResponse(
+                {'deleted': count > 0}
+            )
 
 
 @require_http_methods(['GET', 'POST'])
@@ -105,21 +117,33 @@ def api_show_customers(request):
         )
     else:
         content = json.loads(request.body)
-        new_customer = Customer.objects.create(**content)
-        return JsonResponse(
-            new_customer,
-            encoder=CustomerEncoder,
-            safe=False,
-        )
+        try:
+            new_customer = Customer.objects.create(**content)
+            return JsonResponse(
+                new_customer,
+                encoder=CustomerEncoder,
+                safe=False,
+            )
+        except:
+            return JsonResponse(
+                {'message': 'Your submission contains invalid data'},
+                status=400,
+            )
 
 
 @require_http_methods('DELETE')
 def api_delete_customer(request, id):
     if request.method == 'DELETE':
         count, _ = Customer.objects.filter(id=id).delete()
-        return JsonResponse(
-            {'deleted': count > 0}
-        )
+        if count == 0:
+            return JsonResponse(
+                {'deleted': count > 0},
+                status=400,
+            )
+        else:
+            return JsonResponse(
+                {'deleted': count > 0}
+            )
 
 
 @require_http_methods(['GET', 'POST'])
@@ -143,7 +167,7 @@ def api_show_sales(request):
 
         except:
             return JsonResponse(
-                {'message': 'there is an invalid value in the JSON content'},
+                {'message': 'Your submission contains invalid data'},
                 status=400,
             )
 
@@ -160,6 +184,12 @@ def api_show_sales(request):
 def api_delete_sale(request, id):
     if request.method == 'DELETE':
         count, _ = Sale.objects.filter(id=id).delete()
-        return JsonResponse(
-            {'deleted': count > 0}
-        )
+        if count == 0:
+            return JsonResponse(
+                {'deleted': count > 0},
+                status=400,
+            )
+        else:
+            return JsonResponse(
+                {'deleted': count > 0}
+            )

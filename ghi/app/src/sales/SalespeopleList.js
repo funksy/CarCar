@@ -35,7 +35,7 @@ function SalespeopleList() {
                         {salespeople.map(salesperson => {
                             return (
                                 <tr key={salesperson.id}>
-                                    <td>{salesperson.employee_id}</td>
+                                    <td class="text-lowercase">{salesperson.employee_id}</td>
                                     <td>{salesperson.first_name}</td>
                                     <td>{salesperson.last_name}</td>
                                 </tr>

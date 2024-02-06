@@ -53,7 +53,7 @@ function SalespeopleHistoryList() {
                         {salespeople.map(salesperson => {
                             return (
                                 <option key={salesperson.id} value={salesperson.id}>
-                                    {salesperson.first_name} {salesperson.last_name}, #{salesperson.employee_id}
+                                    {salesperson.first_name} {salesperson.last_name}
                                 </option>
                             )
                         })}

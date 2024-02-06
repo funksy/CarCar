@@ -6,6 +6,7 @@ function NewManufacturerForm() {
         name: ''
     }
     const [formData, setFormData] = useState(initialForm)
+    const navigate = useNavigate()
 
 
     const handleFormChange = (e) => {
@@ -35,6 +36,7 @@ function NewManufacturerForm() {
             const newManufacturer = await response.json()
             setFormData(initialForm)
         }
+        navigate('/inventory/manufacturers')
     }
 
     return (

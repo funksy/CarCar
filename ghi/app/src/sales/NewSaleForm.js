@@ -13,6 +13,7 @@ function NewSaleForm() {
     const [salespeople, setSalespeople] = useState([])
     const [customers, setCustomers] = useState([])
     const [formData, setFormData] = useState(initialForm)
+    const navigate = useNavigate()
 
 
     const fetchData = async () => {
@@ -87,6 +88,7 @@ function NewSaleForm() {
             console.log(newSale)
             setFormData(initialForm)
         }
+        navigate('/sales')
     }
 
 
