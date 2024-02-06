@@ -5,7 +5,7 @@ function SalesList() {
 
 
     const fetchSales = async () => {
-        const salesUrl = '	http://localhost:8090/api/sales/'
+        const salesUrl = 'http://localhost:8090/api/sales/'
         const response = await fetch(salesUrl)
         if (response.ok) {
             const sales = await response.json()
