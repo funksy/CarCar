@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import AlertConfig from "../commonComponents/AlertConfig";
 import { useNavigate } from "react-router-dom";
 
 function NewAutoMobileForm() {
@@ -9,15 +10,9 @@ function NewAutoMobileForm() {
     vin: "",
     model_id: "",
   };
-  const DEFAULT_ALERT_CONFIG = {
-    isShow: false,
-    style: "",
-    message: "",
-    autoReset: false,
-  };
   const [formData, setFormData] = useState(initialForm);
   const [models, setmodels] = useState([]);
-  const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const [alertConfig, setAlertConfig] = useState(AlertConfig("default"));
   const navigate = useNavigate();
 
   const fetchModels = async () => {
@@ -63,21 +58,9 @@ function NewAutoMobileForm() {
     if (response.ok) {
       const newAutomobile = await response.json();
       setFormData(initialForm);
-      setAlertConfig({
-        isShow: true,
-        style: "success",
-        message: "Automobile has been created successfully! Redirecting now!",
-        autoReset: 3000,
-        resetFunc: handleNavigate,
-        defaultConfig: DEFAULT_ALERT_CONFIG,
-      });
+      setAlertConfig(AlertConfig("success", handleNavigate));
     } else {
-      setAlertConfig({
-        isShow: true,
-        style: "danger",
-        message: "Failed to create an automobile!",
-        autoReset: false,
-      });
+      setAlertConfig(AlertConfig("failure"));
     }
   };
 

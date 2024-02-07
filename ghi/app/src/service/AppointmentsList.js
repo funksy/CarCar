@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import AlertConfig from "../commonComponents/AlertConfig";
 
 function AppointmentsList() {
-  const DEFAULT_ALERT_CONFIG = {
-    isShow: false,
-    style: "",
-    message: "",
-    autoReset: false,
-  };
-
   const [appointments, setAppointments] = useState([]);
-  const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const [alertConfig, setAlertConfig] = useState(AlertConfig("default"));
 
   const handleUpdate = async (e) => {
     const appointmentId = e.target.dataset.appointmentId;
@@ -33,16 +27,11 @@ function AppointmentsList() {
         message: `Appointment is ${appointmentStatus} now!`,
         autoReset: 2000,
         resetFunc: setAlertConfig,
-        defaultConfig: DEFAULT_ALERT_CONFIG,
+        defaultConfig: AlertConfig("default"),
       });
       fetchData();
     } else {
-      setAlertConfig({
-        isShow: true,
-        style: "danger",
-        message: "Action Failed!",
-        autoReset: false,
-      });
+      setAlertConfig(AlertConfig("failure"));
     }
   };
 

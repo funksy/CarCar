@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import AlertConfig from "../commonComponents/AlertConfig";
 
 function NewModelForm() {
   const initialForm = {
@@ -16,7 +17,7 @@ function NewModelForm() {
   };
   const [formData, setFormData] = useState(initialForm);
   const [manufacturers, setManufacturers] = useState([]);
-  const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const [alertConfig, setAlertConfig] = useState(AlertConfig("default"));
   const navigate = useNavigate();
 
   const fetchManufacturers = async () => {
@@ -62,21 +63,9 @@ function NewModelForm() {
     if (response.ok) {
       const newManufacturer = await response.json();
       setFormData(initialForm);
-      setAlertConfig({
-        isShow: true,
-        style: "success",
-        message: "Model has been created successfully! Redirecting now!",
-        autoReset: 3000,
-        resetFunc: handleNavigate,
-        defaultConfig: DEFAULT_ALERT_CONFIG,
-      });
+      setAlertConfig(AlertConfig("success", handleNavigate));
     } else {
-      setAlertConfig({
-        isShow: true,
-        style: "danger",
-        message: "Failed to create an model!",
-        autoReset: false,
-      });
+      setAlertConfig(AlertConfig("failure"));
     }
   };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import AlertConfig from "../commonComponents/AlertConfig";
 import { useNavigate } from "react-router-dom";
 
 function AppointmentForm() {
@@ -14,17 +15,11 @@ function AppointmentForm() {
     date: "",
     time: "",
   };
-  const DEFAULT_ALERT_CONFIG = {
-    isShow: false,
-    style: "",
-    message: "",
-    autoReset: false,
-  };
 
   const [technicians, setTechnicians] = useState([]);
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [dateTime, setDateTime] = useState(DEFAULT_DATETIME);
-  const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const [alertConfig, setAlertConfig] = useState(AlertConfig("default"));
   const navigate = useNavigate();
 
   const initialData = () => {
@@ -65,7 +60,6 @@ function AppointmentForm() {
     navigate("/appointments");
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,21 +75,9 @@ function AppointmentForm() {
 
     if (response.ok) {
       initialData();
-      setAlertConfig({
-        isShow: true,
-        style: "success",
-        message: "Appointment has been created successfully! Redirecting now!",
-        autoReset: 3000,
-        resetFunc: handleNavigate,
-        defaultConfig: DEFAULT_ALERT_CONFIG,
-      });
+      setAlertConfig(AlertConfig("success", handleNavigate));
     } else {
-      setAlertConfig({
-        isShow: true,
-        style: "danger",
-        message: "Failed to create an appointment!",
-        autoReset: false,
-      });
+      setAlertConfig(AlertConfig("failure"));
     }
   };
 
