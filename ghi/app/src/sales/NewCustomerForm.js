@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PopUpAlert from '../commonComponents/PopUpAlert'
+import AlertConfig from '../commonComponents/AlertConfig'
 
 function NewCustomerForm() {
-    const defaultAlert = {
-        isShow: false,
-        style: "",
-        message: "",
-        autoReset: false,
-    }
     const initialForm = {
         first_name: '',
         last_name: '',
         address: '',
         phone_number: ''
     }
-    const [alertConfig, setAlertConfig] = useState(defaultAlert)
+    const [alertConfig, setAlertConfig] = useState(AlertConfig('default'))
     const [formData, setFormData] = useState(initialForm)
     const navigate = useNavigate()
 
@@ -23,6 +18,7 @@ function NewCustomerForm() {
     const handleFormChange = (e) => {
         const value = e.target.value
         const inputName = e.target.name
+        console.log()
 
         setFormData({
             ...formData,
@@ -51,20 +47,9 @@ function NewCustomerForm() {
         if (response.ok) {
             const newCustomer = await response.json()
             setFormData(initialForm)
-            setAlertConfig({
-                isShow: true,
-                style: "success",
-                message: "Customer has been created successfully. Redirecting now.",
-                autoReset: 3000,
-                resetFunc: handleNavigate
-            })
+            setAlertConfig(AlertConfig('success', handleNavigate))
         } else {
-            setAlertConfig({
-                isShow: true,
-                style: "danger",
-                message: "Failed to create a customer.",
-                autoReset: false,
-            })
+            setAlertConfig(alertConfig('failure'))
         }
     }
 

@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+
+
+
+
 
 function PopUpAlert({ config }) {
+
   const [alert, setAlert] = useState(config);
 
   useEffect(() => {
@@ -30,4 +35,5 @@ function PopUpAlert({ config }) {
     </>
   );
 }
-export default PopUpAlert;
+
+export default PopUpAlert
