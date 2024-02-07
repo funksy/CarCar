@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import AlertConfig from "../commonComponents/AlertConfig";
 import { useNavigate } from "react-router-dom";
 
 function NewManufacturerForm() {
   const initialForm = {
     name: "",
   };
-  const DEFAULT_ALERT_CONFIG = {
-    isShow: false,
-    style: "",
-    message: "",
-    autoReset: false,
-  };
   const [formData, setFormData] = useState(initialForm);
   const navigate = useNavigate();
-  const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const [alertConfig, setAlertConfig] = useState(AlertConfig("default"));
 
   const handleFormChange = (e) => {
     const value = e.target.value;
@@ -46,21 +41,9 @@ function NewManufacturerForm() {
     if (response.ok) {
       const newManufacturer = await response.json();
       setFormData(initialForm);
-      setAlertConfig({
-        isShow: true,
-        style: "success",
-        message: "Manufacturer has been created successfully! Redirecting now!",
-        autoReset: 3000,
-        resetFunc: handleNavigate,
-        defaultConfig: DEFAULT_ALERT_CONFIG,
-      });
+      setAlertConfig(AlertConfig("success", handleNavigate));
     } else {
-      setAlertConfig({
-        isShow: true,
-        style: "danger",
-        message: "Failed to create an manufacturer!",
-        autoReset: false,
-      });
+      setAlertConfig(AlertConfig("failure"));
     }
   };
 
