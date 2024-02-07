@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import PopUpAlert from '../commonComponents/PopUpAlert'
 
 function NewCustomerForm() {
+    const defaultAlert = {
+        isShow: false,
+        style: "",
+        message: "",
+        autoReset: false,
+    }
     const initialForm = {
         first_name: '',
         last_name: '',
         address: '',
         phone_number: ''
     }
+    const [alertConfig, setAlertConfig] = useState(defaultAlert)
     const [formData, setFormData] = useState(initialForm)
     const navigate = useNavigate()
 
@@ -20,6 +28,11 @@ function NewCustomerForm() {
             ...formData,
             [inputName]: value
         })
+    }
+
+
+    const handleNavigate = () => {
+        navigate('/customers')
     }
 
 
@@ -38,8 +51,21 @@ function NewCustomerForm() {
         if (response.ok) {
             const newCustomer = await response.json()
             setFormData(initialForm)
+            setAlertConfig({
+                isShow: true,
+                style: "success",
+                message: "Customer has been created successfully. Redirecting now.",
+                autoReset: 3000,
+                resetFunc: handleNavigate
+            })
+        } else {
+            setAlertConfig({
+                isShow: true,
+                style: "danger",
+                message: "Failed to create a customer.",
+                autoReset: false,
+            })
         }
-        navigate('/customers')
     }
 
     return (
@@ -48,6 +74,7 @@ function NewCustomerForm() {
                 <div className='shadow p-4 mt-4'>
                     <h1>Add a customer</h1>
                     <form onSubmit={handleSubmit} id='create-customer-form'>
+                        <PopUpAlert config={alertConfig} />
                         <div className='form-floating mb-3'>
                             <input onChange={handleFormChange} placeholder='First Name'
                             required type='text' id='first_name' className='form-control'

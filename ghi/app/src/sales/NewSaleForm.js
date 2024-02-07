@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import PopUpAlert from '../commonComponents/PopUpAlert'
 
 
 function NewSaleForm() {
+    const defaultAlert = {
+        isShow: false,
+        style: "",
+        message: "",
+        autoReset: false,
+    }
     const initialForm = {
         vin: '',
         salesperson_id: '',
         customer_id: '',
         price: ''
     }
+    const [alertConfig, setAlertConfig] = useState(defaultAlert)
     const [vins, setVins] = useState([])
     const [salespeople, setSalespeople] = useState([])
     const [customers, setCustomers] = useState([])
@@ -55,6 +63,11 @@ function NewSaleForm() {
     }
 
 
+    const handleNavigate = () => {
+        navigate('/sales')
+    }
+
+
     useEffect(() => {
         fetchData()
     }, [])
@@ -87,8 +100,21 @@ function NewSaleForm() {
             const newSale = await response.json()
             console.log(newSale)
             setFormData(initialForm)
+            setAlertConfig({
+                isShow: true,
+                style: "success",
+                message: "Customer has been created successfully. Redirecting now.",
+                autoReset: 3000,
+                resetFunc: handleNavigate
+            })
+        }  else {
+            setAlertConfig({
+                isShow: true,
+                style: "danger",
+                message: "Failed to create a customer.",
+                autoReset: false,
+            })
         }
-        navigate('/sales')
     }
 
 
@@ -98,8 +124,8 @@ function NewSaleForm() {
                 <div className="shadow p-4 mt-4">
                     <h1>Record a new sale</h1>
                     <form onSubmit={handleSubmit} id="create-sale-form">
+                        <PopUpAlert config={alertConfig} />
                         <div className="form-floating mb-3">
-
                             <select onChange={handleFormChange} required id="vin"
                             className="form-select" name="vin" value={formData.vin}>
                                 <option value="">Choose a VIN</option>

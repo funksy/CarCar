@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import PopUpAlert from '../commonComponents/PopUpAlert'
 
 function NewSalesperson() {
+    const defaultAlert = {
+        isShow: false,
+        style: "",
+        message: "",
+        autoReset: false,
+    }
     const initialForm = {
         first_name: '',
         last_name: '',
         employee_id: ''
     }
+    const [alertConfig, setAlertConfig] = useState(defaultAlert)
     const [formData, setFormData] = useState(initialForm)
     const navigate = useNavigate()
 
@@ -19,6 +27,11 @@ function NewSalesperson() {
             ...formData,
             [inputName]: value
         })
+    }
+
+
+    const handleNavigate = () => {
+        navigate('/salespeople')
     }
 
 
@@ -37,8 +50,21 @@ function NewSalesperson() {
         if (response.ok) {
             const newSalesperson = await response.json()
             setFormData(initialForm)
+            setAlertConfig({
+                isShow: true,
+                style: "success",
+                message: "Customer has been created successfully. Redirecting now.",
+                autoReset: 3000,
+                resetFunc: handleNavigate
+            })
+        } else {
+            setAlertConfig({
+                isShow: true,
+                style: "danger",
+                message: "Failed to create a customer.",
+                autoReset: false,
+            })
         }
-        navigate('/salespeople')
     }
 
 
@@ -48,6 +74,7 @@ function NewSalesperson() {
                 <div className='shadow p-4 mt-4'>
                     <h1>Add a salesperson</h1>
                     <form onSubmit={handleSubmit} id='create-salesperson-form'>
+                        <PopUpAlert config={alertConfig} />
                         <div className='form-floating mb-3'>
                             <input onChange={handleFormChange} placeholder='First Name'
                             required type='text' id='first_name' className='form-control'
