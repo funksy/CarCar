@@ -8,8 +8,6 @@ function SalespeopleHistoryList() {
 
     for (const sale of sales) {
         if (salesperson) {
-            console.log(sale.salesperson.id)
-            console.log(salesperson)
             filteredSales = sales.filter((sale) => sale.salesperson.id === salesperson)
         }
     }

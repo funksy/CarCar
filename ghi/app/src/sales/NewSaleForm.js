@@ -98,7 +98,6 @@ function NewSaleForm() {
         const response = await fetch(SaleUrl, fetchConfig)
         if (response.ok) {
             const newSale = await response.json()
-            console.log(newSale)
             setFormData(initialForm)
             setAlertConfig({
                 isShow: true,
