@@ -149,7 +149,7 @@ function NewSaleForm() {
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleFormChange} placeholder="Price"
-                            required type="number" id="price" className="form-control"
+                            required type="number" min="0" step="1" id="price" className="form-control"
                             name="price" value={formData.price}/>
                             <label htmlFor="price">Sale Price</label>
                         </div>
