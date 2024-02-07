@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react"
 
-
-
-
-
 function PopUpAlert({ config }) {
 
   const [alert, setAlert] = useState(config);
