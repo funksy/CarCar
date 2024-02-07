@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PopUpAlert from "../commonComponents/PopUpAlert";
+import { useNavigate } from "react-router-dom";
 
 function TechnicianForm() {
   const DEFAULT_FORM_DATA = {
@@ -17,6 +18,7 @@ function TechnicianForm() {
 
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
   const [alertConfig, setAlertConfig] = useState(DEFAULT_ALERT_CONFIG);
+  const navigate = useNavigate();
 
   const initialData = () => {
     setFormData(DEFAULT_FORM_DATA);
@@ -26,6 +28,12 @@ function TechnicianForm() {
     const changedElement = e.target;
     setFormData({ ...formData, [changedElement.name]: changedElement.value });
   };
+
+  const handleNavigate = (param1) => {
+    setAlertConfig(param1);
+    navigate("/technicians");
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,9 +53,9 @@ function TechnicianForm() {
       setAlertConfig({
         isShow: true,
         style: "success",
-        message: "Technician has been added successfully!",
+        message: "Technician has been added successfully!Redirecting now!",
         autoReset: 3000,
-        resetFunc: setAlertConfig,
+        resetFunc: handleNavigate,
         defaultConfig: DEFAULT_ALERT_CONFIG,
       });
     } else {

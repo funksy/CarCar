@@ -31,7 +31,7 @@ function AppointmentsList() {
         isShow: true,
         style: "success",
         message: `Appointment is ${appointmentStatus} now!`,
-        autoReset: 3000,
+        autoReset: 2000,
         resetFunc: setAlertConfig,
         defaultConfig: DEFAULT_ALERT_CONFIG,
       });

@@ -36,7 +36,7 @@ function AutomobileList() {
                             return (
                                 <tr key={auto.id}>
                                     <td>{auto.vin}</td>
-                                    <td class="text-capitalize">{auto.color}</td>
+                                    <td className="text-capitalize">{auto.color}</td>
                                     <td>{auto.year}</td>
                                     <td>{auto.model.name}</td>
                                     <td>{auto.model.manufacturer.name}</td>
