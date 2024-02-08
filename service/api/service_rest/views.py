@@ -53,15 +53,6 @@ def api_list_appointments(request):
                 {"message": "Failed to get appointments!"}, status=400
             )
     if request.method == "POST":
-        # Test Data
-        # {
-        #     "date_time": "2024-03-10T15:35:00Z",
-        #     "reason": "Oil Change",
-        #     "status": "scheduled ",
-        #     "vin": "1C3CC5FB2AN120174",
-        #     "customer": "Shawn",
-        #     "technician": 1
-        # }
         content = json.loads(request.body)
         if "technician" in content:
             try:
@@ -158,12 +149,6 @@ def api_list_technicians(request):
                 {"message": "Failed to get technicians!"}, status=400
             )
     if request.method == "POST":
-        # Test Data
-        # {
-        #   "first_name": "John",
-        #   "last_name": "Lukich",
-        #   "employee_id": "1001",
-        # }
         try:
             content = json.loads(request.body)
             technician = Technician.objects.create(**content)
