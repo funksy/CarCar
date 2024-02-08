@@ -323,6 +323,7 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 {
   "first_name": "first",
   "last_name": "last",
+  "employee_id": "flast"
 }
 ```
 
