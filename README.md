@@ -317,7 +317,7 @@ On the backend, there are 4 models: AutomobileVO, Salesperson, Customer and Sale
 | Creates a salesperson                | POST   | http://localhost:8090/api/salespeople/    |
 | Deletes a single salesperson         | DELETE | http://localhost:8090/api/salespeople/id/ |
 
-**<ins>Creating a salesperson with its first name and last name.  The employee ID is automatically generated</ins>** <br />
+**<ins>Creating a salesperson with its first name, last name, and employee ID</ins>** <br />
 
 ```
 {

@@ -76,8 +76,6 @@ def api_show_salespeople(request):
     else:
         content = json.loads(request.body)
         try:
-            employee_id = f"{content['first_name'][0]}{content['last_name']}"
-            content['employee_id'] = employee_id
             new_salesperson = Salesperson.objects.create(**content)
             return JsonResponse(
                 new_salesperson,

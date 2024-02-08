@@ -70,6 +70,11 @@ function NewSalesperson() {
                             required type='text' id='last_name' className='form-control'
                             name='last_name' value={formData.last_name}/>
                             <label htmlFor="last_name">Last Name</label>
+                        </div><div className='form-floating mb-3'>
+                            <input onChange={handleFormChange} placeholder='Employee ID'
+                            required type='text' id='employee_id' className='form-control'
+                            name='employee_id' value={formData.employee_id}/>
+                            <label htmlFor="employee_id">Employee ID</label>
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
